@@ -20,3 +20,4 @@ class PostDetail(generics.RetrieveAPIView, generics.UpdateAPIView):
 class PostDelete(generics.DestroyAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
+    

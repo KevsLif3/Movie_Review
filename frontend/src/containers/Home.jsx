@@ -1,211 +1,98 @@
-import React from 'react'
-import BackgroundImage from '../assets/images/background.png';
-import WatchTrailer from '../assets/images/Watch-trailer.png';
-import MobileBackground from '../assets/images/mobile-background.png';
-import Movie1 from '../assets/images/movie1.png';
-import Star from '../assets/images/ratings-star.png';
-import HeartLogo from '../assets/images/favorite-heart.png'; 
-import Movie2 from '../assets/images/movie2.png';
-import Movie3 from '../assets/images/movie3.png';
-import Movie4 from '../assets/images/movie4.png';
-import Movie5 from '../assets/images/movie5.png';
-import Movie6 from '../assets/images/movie6.png';
-import Movie7 from '../assets/images/movie7.png';
-import Movie8 from '../assets/images/movie8.png';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import Footer from '../components/common/Footer';
+import Header from '../components/common/Header';
+import ImgCover from '../assets/img/coverimage.png';
+import ImgButton from '../assets/img/button1.png';
+import Imgbutton from '../assets/img/sp-cover.png';
+import { getMovies } from '../reducks/movies/selectors';
+import queryString from 'query-string';
+import API from '../API';
+import Card from '../components/common/Card';
+const api = new API();
+const Home = () => {
+    const parsed = queryString.parse(window.location.search);
+    const [moviesComingSoon, setMoviesCommingSoon] = useState(null);
+    const [moviesNewReleased, setMoviesNewReleased] = useState(null);
+    const selector = useSelector(state => state);
+    const movies = getMovies(selector);
 
-
-function Home() {
+    useEffect(() => {
+        api.getMovies({ release_type: 'Coming Soon'})
+            .then(movies => {
+                setMoviesCommingSoon(movies);
+            })
+            .catch(error => {
+                alert('Failed to connect API: /movies/');
+            });
+        api.getMovies({ release_type: 'Newly Released' })
+            .then(movies => {
+                setMoviesNewReleased(movies);
+            })
+            .catch(error => {
+                alert('Failed to connect API: /movies/');
+            });
+    }, []);
     return (
         <>
-          <img class='background-image'src= {BackgroundImage} alt="background-image"/>
-<img class='mobile-background' src={MobileBackground} alt="background-image"/>
+            <Header />
+            <section class="cover">
+                <div class="gradient">
+                    <div class="coverdetails m-25">
+                        <div class="row sp-coverdetails">
+                            <div class="trailer m-10 row">
+                                <img src={ImgButton} alt="" />
+                                <div class="p-10">Watch Trailer</div>
+                            </div>
+                            <div class="m-10">
+                                <p class="date">October 1st</p>
+                                In cinemas
+                            </div>
+                        </div>
+                        <div class="cover-description m-10">
+                            <p>
+                                James Bond has left active service. His peace is short-lived when Felix Leiter, an old
+                                friend from the CIA, turns up asking for help, leading Bond onto the trail of a
+                                mysterious villain armed with dangerous new technology.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <img src={ImgCover} alt="" class="backgroundcover" />
+                <img src={Imgbutton} class="sp-backgroundcover" alt="" />
+            </section>
+            <section class="content">
+                <h1 class="section-heading m-20 p-10">Newly Released</h1>
+                {moviesNewReleased && moviesNewReleased.results.length > 0 ? (
+                    <div class="grid">
+                        {moviesNewReleased.results.map(movie => (
+                            <Card movie={movie} />
+                        ))}
+                    </div>
+                ) : (
+                    <div class="no-post">
+                        <p>No movies here yet...</p>
+                    </div>
+                )}
 
-<img class='Watch-trailer' src={WatchTrailer} alt="Watch-trailer"/>
-<p class='date' >October 1st
-    In cinemas </p>
-<p class='James-bond' >James Bond has left active service. His peace is short-lived when Felix Leiter,
-    an old friend from the CIA, turns up asking for help, leading Bond onto
-    the trail of a mysterious villain armed with dangerous new technology.
-    </p>
+                <hr class="divider" />
 
-<h2 class='new'>Newly Released</h2>
-<div class="images">
-    <ul class='menu'>
-        <li class="option">
-            <img class="images-size" src={Movie1} alt="“”" />
-            <p class="heading">Shang-Chi</p>
-            <img class="heart" src={HeartLogo} alt=""/>
-
-            <div class="last">
-                <img class="star" src={Star} alt=""/>
-                <p class="rating">4.0/5</p>
-                <button class="btn">Trailer</button>
-            </div>
-        </li>
-
-        <li class="option">
-            <img class="images-size" src={Movie2} alt="“”" />
-            <p class="heading">Free Guy</p>
-            <img class="heart" src={HeartLogo} alt=""/>
-
-            <div class="last">
-                <img class="star" src={Star} alt=""/>
-                <p class="rating">4.5/5</p>
-                <button class="btn">Trailer</button>
-            </div>
-        </li>
-
-        <li class="option">
-            <img class="images-size" src={Movie3} alt="“”" />
-            <p class="heading">Cruella</p>
-            <img class="heart" src={HeartLogo} alt=""/>
-
-            <div class="last">
-                <img class="star" src={Star} alt=""/>
-                <p class="rating">4.7/5</p>
-                <button class="btn">Trailer</button>
-            </div>
-        </li>
-
-
-        <li class="option">
-            <img class="images-size" src={Movie4} alt="“”" />
-            <p class="heading">The Father</p>
-            <img class="heart" src={HeartLogo} alt=""/>
-
-            <div class="last">
-                <img class="star"src={Star} alt=""/>
-                <p class="rating">4.5/5</p>
-                <button class="btn">Trailer</button>
-            </div>
-        </li>
-
-        <li class="option">
-            <img class="images-size" src={Movie5} alt="“”" />
-            <p class="heading">Raya and the last dragon</p>
-            <img class="heart" src={HeartLogo} alt=""/>
-
-            <div class="last">
-                <img class="star" src={Star} alt=""/>
-                <p class="rating">3.5/5</p>
-                <button class="btn">Trailer</button>
-            </div>
-        </li>
-
-        <li class="option">
-            <img class="images-size" src={Movie6} alt="“”" />
-            <p class="heading">Nomadland</p>
-            <img class="heart" src={HeartLogo} alt=""/>
-
-            <div class="last">
-                <img class="star" src={Star} alt=""/>
-                <p class="rating">4.5/5</p>
-                <button class="btn">Trailer</button>
-            </div>
-        </li>
-
-        <li class="option">
-            <img class="images-size" src={Movie7} alt="“”" />
-            <p class="heading">Minari</p>
-            <img class="heart" src={HeartLogo} alt=""/>
-
-            <div class="last">
-                <img class="star" src={Star} alt=""/>
-                <p class="rating">4.5/5</p>
-                <button class="btn">Trailer</button>
-            </div>
-        </li> <li class="option">
-            <img class="images-size" src={Movie8} alt="“”" />
-            <p class="heading">Judas and the black messiah</p>
-            <img class="heart" src={HeartLogo} alt=""/>
-
-            <div class="last">
-                <img class="star" ssrc={Star} alt=""/>
-                <p class="rating">4.5/5</p>
-                <button class="btn">Trailer=</button>
-            </div>
-        </li>
-    </ul>
-</div>
-
-<h2 class='new'>Coming Soon</h2>
-
-<div class="images">
-    <ul class='menu'>
-        <li class="option">
-            <img class="images-size" src={Movie1} alt="“”" />
-            <p class="heading">Shang-Chi</p>
-            <img class="heart" src={HeartLogo} alt=""/>
-
-            <div class="last">
-                <img class="star" src={Star} alt=""/>
-                <p class="rating">4.0/5</p>
-                <button class="btn">Trailer</button>
-            </div>
-        </li>
-
-<li class="option">
-    <img class="images-size" src={Movie4} alt="“”" />
-    <p class="heading">The Father</p>
-    <img class="heart" src={HeartLogo} alt=""/>
-
-    <div class="last">
-        <img class="star" src={Star} alt=""/>
-        <p class="rating">4.5/5</p>
-        <button class="btn">Trailer</button>
-    </div>
-</li>
-
-<li class="option">
-    <img class="images-size" src={Movie5} alt="“”" />
-    <p class="heading">Raya and the last dragon</p>
-    <img class="heart" src={HeartLogo} alt=""/>
-
-    <div class="last">
-        <img class="star" src={Star} alt=""/>
-        <p class="rating">3.5/5</p>
-        <button class="btn">Trailer</button>
-    </div>
-</li>
-
-<li class="option">
-    <img class="images-size" src={Movie6} alt="“”" />
-    <p class="heading">Nomadland</p>
-    <img class="heart" src={HeartLogo} alt=""/>
-
-    <div class="last">
-        <img class="star" src={Star} alt=""/>
-        <p class="rating">4.5/5</p>
-        <button class="btn">Trailer</button>
-    </div>
-</li>
-
-<li class="option">
-    <img class="images-size" src={Movie7} alt="“”" />
-    <p class="heading">Minari</p>
-    <img class="heart" src={HeartLogo} alt=""/>
-
-    <div class="last">
-        <img class="star" src={Star} alt=""/>
-        <p class="rating">4.5/5</p>
-        <button class="btn">Trailer</button>
-    </div>
-</li>
-<li class="option">
-    <img class="images-size" src={Movie8} alt="“”" />
-    <p class="heading">Judas and the black messiah</p>
-    <img class="heart" src={HeartLogo} alt=""/>
-
-    <div class="last">
-        <img class="star" src={Star} alt=""/>
-        <p class="rating">4.5/5</p>
-        <button class="btn">Trailer</button>
-    </div>
-</li>
-</ul>
-</div>  
+                <h1 class="section-heading m-20 ">Coming Soon</h1>
+                {moviesComingSoon && moviesComingSoon.results.length > 0 ? (
+                    <div class="grid">
+                        {moviesComingSoon.results.map(movie => (
+                            <Card movie={movie} />
+                        ))}
+                    </div>
+                ) : (
+                    <div class="no-post">
+                        <p>No movies here yet...</p>
+                    </div>
+                )}
+            </section>
+            <Footer />
         </>
-    )
-}
+    );
+};
 
 export default Home;
