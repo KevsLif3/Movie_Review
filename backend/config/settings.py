@@ -55,7 +55,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+   
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -89,11 +89,11 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd5e5uihpep6eba',
-        'USER': 'ueriohtmagmqrc',
+        'NAME': 'd8b7a4b795cktq',
+        'USER': 'tcqamiibwkgiid',
         'PORT': 5432,
-        'HOST': 'ec2-54-167-168-52.compute-1.amazonaws.com',
-        'PASSWORD': 'b2cb82e9fbfad6e5d31c3456588df6b598acf4627e35c617aa0afb4d9ad6f57c',
+        'HOST': 'ec2-3-212-143-188.compute-1.amazonaws.com',
+        'PASSWORD': '072dd0552da5837260818ae05fb74880e1ec6385814d81b24da1d6ad62f46b9c',
     }
 }
 
@@ -154,9 +154,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 cloudinary.config(
-    cloud_name="techis",
-    api_key="886187759951178",
-    api_secret="WGcWrWfkPlxdOCdlFaLTdjSNtfo",
+    cloud_name="kevin-convirs",
+    api_key="696772436366744",
+    api_secret="iRHfGBzpA0WaCNtZAzsE9PzxT90",
     secure=True
 )
 
