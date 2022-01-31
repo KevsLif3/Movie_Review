@@ -1,4 +1,4 @@
-# Movie_review in React & Redux + Django
+# Movie_review
 
 ```
 Forum App, with a frontend built in React & Redux and a backend built in Django API.
