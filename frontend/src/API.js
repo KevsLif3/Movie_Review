@@ -6,7 +6,7 @@ var baseURL;
 // } else {
 //     baseURL = 'http://127.0.0.1:8000';
 // }
-baseURL = 'https://movie-review-noori-backend.herokuapp.com/'
+baseURL = 'https://movie-review-backend1.herokuapp.com/'
 
 const api = axios.create({
     baseURL: baseURL,
