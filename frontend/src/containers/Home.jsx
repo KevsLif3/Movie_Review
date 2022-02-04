@@ -42,10 +42,12 @@ const Home = () => {
                         <div class="row sp-coverdetails">
                             <div class="trailer m-10 row">
                                 <img src={ImgButton} alt="" />
-                                <div class="p-10">Watch Trailer</div>
+                                <a href="https://www.youtube.com/watch?v=BIhNsAtPbPI" target='blank'>
+                                    <div class="p-10">Watch Trailer</div> </a>
+                                
                             </div>
                             <div class="m-10">
-                                <p class="date">October 1st</p>
+                                <p class="date">October 1st</p>  
                                 In cinemas
                             </div>
                         </div>
