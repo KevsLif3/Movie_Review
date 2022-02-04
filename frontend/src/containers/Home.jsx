@@ -18,7 +18,7 @@ const Home = () => {
     const movies = getMovies(selector);
 
     useEffect(() => {
-        api.getMovies({ release_type: 'Coming Soon'})
+        api.getMovies({ release_type: 'Coming Soon' })
             .then(movies => {
                 setMoviesCommingSoon(movies);
             })
@@ -42,9 +42,15 @@ const Home = () => {
                         <div class="row sp-coverdetails">
                             <div class="trailer m-10 row">
                                 <img src={ImgButton} alt="" />
+<<<<<<< HEAD
                                 <a href="https://www.youtube.com/watch?v=BIhNsAtPbPI" target='blank'>
                                     <div class="p-10">Watch Trailer</div> </a>
                                 
+=======
+                                <a href="https://www.youtube.com/watch?v=BIhNsAtPbPI" target="_blank">
+                                    <div class="p-10">Watch Trailer</div>
+                                </a>
+>>>>>>> 0724ec517ed97d2e612dd5327a7ca34ecd492c2e
                             </div>
                             <div class="m-10">
                                 <p class="date">October 1st</p>  
