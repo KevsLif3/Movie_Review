@@ -70,7 +70,7 @@ const Category = () => {
                 )}
                 <hr class="divider" />
                 <h1 id="comedy" class="section-heading m-20">
-                    Comedy
+                    Horror
                 </h1>
                 {categoryComedy && categoryComedy.results.length > 0 ? (
                     <div class="grid">
@@ -85,7 +85,7 @@ const Category = () => {
                 )}
                 <hr class="divider" />
                 <h1 id="drama" class="section-heading m-20">
-                    Drama
+                    Comedy
                 </h1>
                 {categoryDrama && categoryDrama.results.length > 0 ? (
                     <div class="grid">
@@ -101,7 +101,7 @@ const Category = () => {
 
                 <hr class="divider" />
                 <h1 id="horror" class="section-heading m-20">
-                    Horror
+                    Drama
                 </h1>
 
                 {categoryHorror && categoryHorror.results.length > 0 ? (
