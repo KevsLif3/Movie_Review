@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router';
 import Category from './containers/Category';
 import Favourites from './containers/Favourites';
+
 import Home from './containers/Home';
 import Preview from './containers/Preview';
 import Search from './containers/Search';
